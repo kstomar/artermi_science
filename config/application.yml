@@ -1,0 +1,4 @@
+s3-region: 'us-east-1'
+s3-access-key: 'AWSAccessKeyId=AKIAIMJ4O7FVDJWPVG2Q'
+s3-access-secret: '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'
+bucket-name: 'artermi'

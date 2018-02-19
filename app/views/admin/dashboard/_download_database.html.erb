@@ -1,0 +1,11 @@
+<% if zip_created %>
+  <%= link_to 'Download', download_admin_admin_users_path(data_base_event_id: 1), class: 'btn btn-primary' %>
+  <%= link_to 'Download New Version of Entire Database', add_to_sidekiq_admin_admin_users_path %>
+<% else %>
+  <%= link_to 'Download Entire Database', add_to_sidekiq_admin_admin_users_path %>
+<% end %>
+
+<%= form_tag('/admin/admin_users/1/upload_zip', :multipart => true ) do -%>
+  <label for="file">File to Upload</label> <%= file_field_tag "file" %>
+  <div><%= submit_tag 'Submit' %></div>
+<% end -%>
