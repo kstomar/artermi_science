@@ -1,0 +1,17 @@
+<h2><%= @user.name%> Documents</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Files</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @user.documents.each_with_index do |doc, index|%>
+        <% if (index%3==0) %><tr><%end%>
+        <td><%= link_to image_tag(doc.file.thumb('180x180#').url, class: 'img-thumbnail'),
+                    doc.file.url, target: '_blank' %></td>        
+        <% if ((index+1)%3==0) %></tr><%end%>
+      <%end%>
+  </tbody>
+</table>
+

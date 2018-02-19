@@ -35,10 +35,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-end
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'rspec-rails'
   gem 'factory_bot'
 end
@@ -62,3 +58,5 @@ gem 'aws-sdk', '~> 3'
 gem 'bootstrap-sass'
 gem 'dragonfly-s3_data_store'
 gem 'mime-types'
+gem "nested_form"
+

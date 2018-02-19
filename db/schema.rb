@@ -51,18 +51,18 @@ ActiveRecord::Schema.define(version: 20180218044812) do
 
   create_table "data_base_events", force: :cascade do |t|
     t.string   "batch_bid"
-    t.integer  "admin_user_id"
+    t.integer  "user_id"
     t.string   "filename"
     t.string   "event_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "data_base_events", ["admin_user_id"], name: "index_data_base_events_on_admin_user_id", using: :btree
+  add_index "data_base_events", ["user_id"], name: "index_data_base_events_on_user_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "image_uid"
+    t.string   "file_uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20180218044812) do
   add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "data_base_events", "admin_users"
+  add_foreign_key "data_base_events", "users"
   add_foreign_key "documents", "users"
   add_foreign_key "projects", "organizations"
   add_foreign_key "users", "organizations"

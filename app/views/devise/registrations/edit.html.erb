@@ -1,0 +1,64 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= nested_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :organization %><br />
+    <%= f.select(:organization_id, options_for_select(organizations), {}, {class: "form-control"})%>
+  </div>
+
+  <div class="form-group">
+      <table class="table table-striped">
+        <tbody>
+          <%= f.fields_for :documents do |doc| %>
+            <% if doc.object.new_record? %>
+              <%= doc.file_field :file, required: true %>
+              <div class="remove-fields">
+                <%= doc.hidden_field :_destroy %>
+                <%= doc.link_to_remove "remove"  , class: "btn btn-primary" %>
+              </div>
+            <%else%>
+                <%= link_to image_tag(doc.object.file.thumb('180x180#').url, class: 'img-thumbnail'),
+                  doc.object.file.url, target: '_blank' %>
+                <%= doc.hidden_field :_destroy %>
+                <%= doc.link_to_remove "remove"  , class: "btn btn-primary" %>
+            <%end%>      
+          <% end %>
+        
+          <tr><td>
+            <%= f.link_to_add "Add Documents", :documents, class: "btn btn-primary", style: "    margin-top: 20px;" %>   
+          </td></tr>        
+        </tbody>
+      </table>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -700,6 +700,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    nested_form (0.3.2)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
@@ -835,6 +836,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mime-types
+  nested_form
   pg (~> 0.20)
   rails (= 4.2.8)
   rspec-rails

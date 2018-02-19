@@ -12,8 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
 //= require bootstrap-sprockets
-@import "bootstrap-sprockets";
-@import "bootstrap";
+//= require turbolinks
+//= require jquery_nested_form
+//= require_tree .
