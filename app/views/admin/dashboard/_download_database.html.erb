@@ -1,9 +1,23 @@
-<% if zip_created %>
-  <%= link_to 'Download', download_admin_admin_users_path(data_base_event_id: 1), class: 'btn btn-primary' %>
-  <%= link_to 'Download New Version of Entire Database', add_to_sidekiq_admin_admin_users_path %>
-<% else %>
-  <%= link_to 'Download Entire Database', add_to_sidekiq_admin_admin_users_path %>
-<% end %>
+<%= link_to 'Download New Version of Entire Database', add_to_sidekiq_admin_admin_users_path, class: "new_download_button" %>
+
+<table style="width:100%">
+  <tr>
+    <th>Verion</th>
+    <th>Created at</th>
+    <th>Action</th>
+  </tr>
+  <% current_admin_user.data_base_events.order('created_at DESC').each do |data_base_event| %>
+    <tr>
+      <td><%= data_base_event.filename %></td>
+      <td><%= data_base_event.created_at %></td>
+      <% if zip_created(data_base_event.batch_bid) %>
+        <td><%= link_to 'Download', download_admin_admin_users_path(data_base_event_id: data_base_event.id), class: "download_button" %></td>
+      <% else %>
+       <td>In Progress</td>
+      <% end%>
+    </tr>
+  <% end %>
+</table>
 
 <%= form_tag('/admin/admin_users/1/upload_zip', :multipart => true ) do -%>
   <label for="file">File to Upload</label> <%= file_field_tag "file" %>

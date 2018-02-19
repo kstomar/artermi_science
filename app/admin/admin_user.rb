@@ -32,8 +32,6 @@ ActiveAdmin.register AdminUser do
   end
 
   collection_action :progress, method: :get do
-    status_container = SidekiqStatus::Container.load(current_admin_user.data_base_event.batch_bid)
-    status_container.status
   end
 
   collection_action :download, method: :get do
